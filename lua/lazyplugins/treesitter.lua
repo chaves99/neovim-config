@@ -17,6 +17,8 @@ return {
             "python",
             "html",
             "css",
+            "ninja",
+            "rst",
         },
 
         sync_install = false,

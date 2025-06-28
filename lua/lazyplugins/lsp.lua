@@ -7,7 +7,6 @@ return {
     config = function()
         --local capabilities = vim.lsp.protocol.make_client_capabilities()
         local capabilities = require('blink.cmp').get_lsp_capabilities()
-        --capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
         require('mason').setup {
             ui = {
@@ -35,30 +34,30 @@ return {
 
         local lspconfig = require("lspconfig")
 
-        lspconfig.pyright.setup {
-            capabilities = capabilities,
-        }
+        -- lspconfig.pyright.setup {
+        --     capabilities = capabilities,
+        -- }
 
-        lspconfig.lua_ls.setup {
-            capabilities = capabilities,
-        }
-
-        lspconfig.angularls.setup {
-            capabilities = capabilities,
-        }
-
-        lspconfig.ts_ls.setup {
-            capabilities = capabilities,
-        }
-
-        lspconfig.html.setup {
-            capabilities = capabilities,
-        }
-
-        lspconfig.cssls.setup {
-            capabilities = capabilities,
-        }
-
+        -- lspconfig.lua_ls.setup {
+        --     capabilities = capabilities,
+        -- }
+        --
+        -- lspconfig.angularls.setup {
+        --     capabilities = capabilities,
+        -- }
+        --
+        -- lspconfig.ts_ls.setup {
+        --     capabilities = capabilities,
+        -- }
+        --
+        -- lspconfig.html.setup {
+        --     capabilities = capabilities,
+        -- }
+        --
+        -- lspconfig.cssls.setup {
+        --     capabilities = capabilities,
+        -- }
+        --
         vim.diagnostic.config({
             float = {
                 focusable = false,

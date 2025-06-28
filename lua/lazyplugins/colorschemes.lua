@@ -5,4 +5,6 @@ return {
     { "folke/tokyonight.nvim",    name = "tokyonight", lazy = false,   priority = 1000 },
     { "rmehri01/onenord.nvim",    name = "one-nord",   lazy = false,   priority = 1000 },
     { "Shatur/neovim-ayu",        name = "ayu",        priority = 1000 },
+    { "wtfox/jellybeans.nvim",    name = "jellybeans", priority = 1000 },
+    { "Shatur/neovim-ayu",        name = "ayu",        priority = 1000 },
 }
