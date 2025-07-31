@@ -6,7 +6,7 @@ return {
     },
     config = function()
         --local capabilities = vim.lsp.protocol.make_client_capabilities()
-        local capabilities = require('blink.cmp').get_lsp_capabilities()
+        -- local capabilities = require('blink.cmp').get_lsp_capabilities()
 
         require('mason').setup {
             ui = {
@@ -24,7 +24,7 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "angularls",
-                "pyright",
+                "pylsp",
                 "ts_ls",
                 "html",
                 "cssls",
@@ -58,6 +58,23 @@ return {
         --     capabilities = capabilities,
         -- }
         --
+
+        vim.lsp.config('pylsp', {
+            settings = {
+                pylsp = {
+                    plugins = {
+                        pycodestyle = {
+                            ignore = { 'W391' },
+                            maxLineLength = 100
+                        },
+                        rope_autoinport = {
+                            enabled = true,
+                        }
+                    }
+                }
+            }
+        })
+
         vim.diagnostic.config({
             float = {
                 focusable = false,

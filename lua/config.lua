@@ -37,7 +37,7 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd('LspAttach', {
     callback = function(e)
         local opts = { buffer = e.buf }
-        vim.keymap.set("n", "<leader>fm", function() vim.lsp.buf.format() end, opts)
+        vim.keymap.set({"n", "v"}, "<leader>fm", function() vim.lsp.buf.format() end, opts)
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "<leader>sm", function() vim.lsp.buf.workspace_symbol() end, opts)
@@ -49,4 +49,15 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
     end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function()
+        local bufnr = vim.fn.bufnr('%')
+        vim.keymap.set("n", "<CR>", function()
+            vim.api.nvim_command([[execute "normal! \<cr>"]])
+            vim.api.nvim_command(bufnr .. 'bd')
+        end, { buffer = bufnr })
+    end,
+    pattern = "qf",
 })
