@@ -103,6 +103,10 @@ return {
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "java",
             callback = function()
+                -- REMAP FOR JAVA
+                vim.keymap.set("n", "<leader>oi", jdtls.organize_imports)
+                vim.keymap.set("n", "<leader>vv", jdtls.extract_variable)
+                vim.keymap.set("n", "<leader>rm", require("jdtls.dap").setup_dap_main_class_configs)
                 local success, result = pcall(jdtls.start_or_attach, opts)
                 if success then
                 else
@@ -110,9 +114,5 @@ return {
                 end
             end
         })
-        -- REMAP FOR JAVA
-        vim.keymap.set("n", "<leader>oi", jdtls.organize_imports)
-        vim.keymap.set("n", "<leader>vv", jdtls.extract_variable)
-        vim.keymap.set("n", "<leader>rm", require("jdtls.dap").setup_dap_main_class_configs)
     end
 }

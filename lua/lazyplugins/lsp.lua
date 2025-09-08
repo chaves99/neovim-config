@@ -75,6 +75,25 @@ return {
             }
         })
 
+        local function ts_ls_organize_imports(bufnr)
+            -- gets the current bufnr if no bufnr is passed
+            if not bufnr then bufnr = vim.api.nvim_get_current_buf() end
+
+            -- params for the request
+            local params = {
+                command = "_typescript.organizeImports",
+                arguments = { vim.api.nvim_buf_get_name(bufnr) },
+                title = ""
+            }
+
+            vim.lsp.buf_request_sync(bufnr, "workspace/executeCommand", params, 500)
+        end
+        vim.lsp.config('ts_ls', {
+            on_attach = function()
+                vim.keymap.set("n", "<leader>oi", ts_ls_organize_imports)
+            end
+        })
+
         vim.diagnostic.config({
             float = {
                 focusable = false,
